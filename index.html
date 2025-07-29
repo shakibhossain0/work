@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Explorer - Interactive 3D Space Journey</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1>COSMOS EXPLORER</h1>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Initializing 3D Space Environment...</p>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-rocket"></i>
+                <span>Cosmos Explorer</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#explore" class="nav-link">Explore Space</a></li>
+                <li><a href="#science" class="nav-link">Space Science</a></li>
+                <li><a href="#missions" class="nav-link">Mission Builder</a></li>
+                <li><a href="#timeline" class="nav-link">Cosmic Timeline</a></li>
+                <li><a href="#multiverse" class="nav-link">Multiverse</a></li>
+            </ul>
+            <div class="nav-controls">
+                <div class="language-toggle">
+                    <input type="checkbox" id="language-toggle" class="language-checkbox">
+                    <label for="language-toggle" class="language-label">
+                        <span class="lang-en">EN</span>
+                        <span class="lang-bn">বাংলা</span>
+                        <span class="language-ball"></span>
+                    </label>
+                </div>
+                <div class="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero-container">
+                <div id="space-canvas"></div>
+                <div class="hero-content">
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore Space Section -->
+        <section id="explore" class="section">
+            <div class="container">
+                <h2>Interactive Space Explorer</h2>
+                <div class="explorer-controls">
+                    <div class="control-group">
+                        <label>Object Type:</label>
+                        <select id="object-type">
+                            <option value="planets">Planets</option>
+                            <option value="stars">Stars</option>
+                            <option value="blackholes">Black Holes</option>
+                            <option value="galaxies">Galaxies</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <button id="zoom-in" class="btn-icon"><i class="fas fa-search-plus"></i></button>
+                        <button id="zoom-out" class="btn-icon"><i class="fas fa-search-minus"></i></button>
+                        <button id="reset-view" class="btn-icon"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+                <div id="space-explorer"></div>
+            </div>
+        </section>
+
+        <!-- Space Science Section -->
+        <section id="science" class="section">
+            <div class="container">
+                <h2>Learn Space Science</h2>
+                <div class="science-content">
+                    <div class="science-topic" data-topic="relativity">
+                        <h3>Relativity</h3>
+                        <div class="topic-content">
+                            <div class="animation-container">
+                                <canvas id="relativity-animation"></canvas>
+                            </div>
+                            <p>Discover how space and time are interconnected through Einstein's theory of relativity.</p>
+                        </div>
+                    </div>
+                    <div class="science-topic" data-topic="gravity">
+                        <h3>Gravity</h3>
+                        <div class="topic-content">
+                            <div class="animation-container">
+                                <canvas id="gravity-animation"></canvas>
+                            </div>
+                            <p>Understand how gravity shapes the universe from planets to galaxies.</p>
+                        </div>
+                    </div>
+                    <div class="science-topic" data-topic="time-dilation">
+                        <h3>Time Dilation</h3>
+                        <div class="topic-content">
+                            <div class="animation-container">
+                                <canvas id="time-dilation-animation"></canvas>
+                            </div>
+                            <p>Experience how time moves differently in strong gravitational fields or at high speeds.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zero Gravity Lab -->
+        <section id="zero-gravity" class="section">
+            <div class="container">
+                <h2>Zero Gravity Physics Lab</h2>
+                <div class="lab-container">
+                    <div id="physics-simulator"></div>
+                    <div class="lab-controls">
+                        <div class="control-group">
+                            <label>Object:</label>
+                            <select id="object-selector">
+                                <option value="ball">Ball</option>
+                                <option value="cube">Cube</option>
+                                <option value="liquid">Liquid</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Force:</label>
+                            <input type="range" id="force-slider" min="0" max="100" value="50">
+                        </div>
+                        <button id="apply-force" class="btn">Apply Force</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Builder -->
+        <section id="missions" class="section">
+            <div class="container">
+                <h2>Build Your Space Mission</h2>
+                <div class="mission-builder">
+                    <div class="mission-controls">
+                        <div class="control-group">
+                            <label>Destination:</label>
+                            <select id="destination">
+                                <option value="mars">Mars</option>
+                                <option value="europa">Europa</option>
+                                <option value="titan">Titan</option>
+                                <option value="proxima">Proxima Centauri</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Rocket Type:</label>
+                            <select id="rocket">
+                                <option value="falcon">Falcon Heavy</option>
+                                <option value="starship">Starship</option>
+                                <option value="ion">Ion Drive</option>
+                                <option value="nuclear">Nuclear Thermal</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Fuel Type:</label>
+                            <select id="fuel">
+                                <option value="rp1">RP-1/LOX</option>
+                                <option value="methane">Methane/LOX</option>
+                                <option value="hydrogen">Liquid Hydrogen</option>
+                                <option value="xenon">Xenon</option>
+                            </select>
+                        </div>
+                        <button id="simulate-mission" class="btn btn-primary">Simulate Mission</button>
+                    </div>
+                    <div class="mission-results">
+                        <h3>Mission Results</h3>
+                        <div id="mission-output">
+                            <p>Select your mission parameters and click "Simulate Mission"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cosmic Timeline -->
+        <section id="timeline" class="section">
+            <div class="container">
+                <h2>Cosmic Timeline</h2>
+                <div class="timeline-container">
+                    <div class="timeline-video-container">
+                        <iframe id="timeline-video" src="https://www.youtube.com/embed/uD4izuDMUQA?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="timeline-controls">
+                        <button id="timeline-play" class="btn-icon"><i class="fas fa-play"></i></button>
+                        <button id="timeline-pause" class="btn-icon"><i class="fas fa-pause"></i></button>
+                        <input type="range" id="timeline-slider" min="0" max="100" value="0">
+                    </div>
+                    <div id="timeline-viewer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multiverse Explorer -->
+        <section id="multiverse" class="section">
+            <div class="container">
+                <h2>Multiverse Theories</h2>
+                <div class="multiverse-container">
+                    <div class="multiverse-video-container">
+                        <iframe id="multiverse-video" src="https://www.youtube.com/embed/N79TowJOHHE?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modern Footer -->
+    <footer id="main-footer">
+        <div class="footer-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-column">
+                    <h3 class="footer-logo">
+                        <i class="fas fa-rocket"></i> Cosmos Explorer
+                    </h3>
+                    <p class="footer-description">
+                        Explore the wonders of the universe with our interactive space platform. 
+                        Free access to space exploration and education for everyone.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#explore">Explore Space</a></li>
+                        <li><a href="#science">Space Science</a></li>
+                        <li><a href="#missions">Mission Builder</a></li>
+                        <li><a href="#timeline">Cosmic Timeline</a></li>
+                        <li><a href="#multiverse">Multiverse</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Space Center, Houston, TX 77058</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@cosmosexplorer.space</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter & Feedback -->
+                <div class="footer-column">
+                    <h4>Stay Updated</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit" class="btn-subscribe">Subscribe</button>
+                    </form>
+                    <div class="feedback-section">
+                        <h4>Quick Feedback</h4>
+                        <form class="feedback-form">
+                            <textarea placeholder="Your feedback..." rows="3"></textarea>
+                            <button type="submit" class="btn-feedback">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <div class="footer-bottom-content">
+                    <p class="copyright">&copy; 2025 Cosmos Explorer. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" class="theme-checkbox">
+                        <label for="theme-toggle" class="theme-label">
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                            <span class="theme-ball"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Google Translate Element (Hidden) -->
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.144.0/three.min.js"></script>
+    <script src="main.js"></script>
+    <script src="space-explorer.js"></script>
+    <script src="science-animations.js"></script>
+    <script src="physics-lab.js"></script>
+    <script src="mission-builder.js"></script>
+    <script src="timeline.js"></script>
+    
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            if (typeof google === 'object' && typeof google.translate === 'object') {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,bn',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+        }
+        
+        // Load Google Translate script
+        function loadGoogleTranslate() {
+            if (!document.getElementById('google_translate_script')) {
+                var script = document.createElement('script');
+                script.id = 'google_translate_script';
+                script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                script.onerror = function() {
+                    console.log('Failed to load Google Translate');
+                };
+                document.head.appendChild(script);
+            }
+        }
+        
+        // Trigger translation
+        function triggerTranslation(lang) {
+            if (typeof google === 'object' && typeof google.translate === 'object') {
+                // Initialize if not already done
+                googleTranslateElementInit();
+                
+                // Wait for element to be created, then trigger translation
+                setTimeout(function() {
+                    var select = document.querySelector('.goog-te-combo');
+                    if (select) {
+                        select.value = lang;
+                        select.dispatchEvent(new Event('change'));
+                    }
+                }, 100);
+            } else {
+                // Load Google Translate and then trigger translation
+                window.translateAfterLoad = lang;
+                loadGoogleTranslate();
+            }
+        }
+        
+        // Make functions globally accessible
+        window.googleTranslateElementInit = googleTranslateElementInit;
+        window.loadGoogleTranslate = loadGoogleTranslate;
+        window.triggerTranslation = triggerTranslation;
+    </script>
+</body>
+</html>
